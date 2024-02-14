@@ -13,7 +13,7 @@ public class App {
 
         Celda celda = new Celda(1,1, true, tablero, new ArrayList<Integer>());
 
-        System.out.println(celda.vecinasVivas());
+        System.out.println(celda.calcularVecinosVivos());
 
 
         

@@ -26,9 +26,34 @@ public class Celda implements Runnable {
 
     }
 
+    
+    public synchronized boolean evaluacion () {
+        int vecinosVivos = calcularVecinosVivos();
+
+        if(this.estado){
+            if(vecinosVivos == 0 || vecinosVivos >3){
+                morir();
+            } 
+
+        } else {
+            if (vecinosVivos == 3){
+                nacer();
+            } 
+        }
+        return this.estado;
+    }
+    
+    private void nacer(){
+        this.estado = true;
+    }
 
 
-    public int vecinasVivas() {
+    private void morir(){
+        this.estado = false;
+    }
+
+
+    public int calcularVecinosVivos() {
         int contador = 0;
         int i = getFila();
         int j = getColumna();
@@ -50,7 +75,6 @@ public class Celda implements Runnable {
                 }
             }
         }
-
         // Restar 1 si la celda en sí misma es true (para evitar contarla dos veces)
         if (tablero.getMatriz()[i][j]) {
             contador--;
