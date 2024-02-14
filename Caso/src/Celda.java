@@ -1,21 +1,19 @@
-import java.util.ArrayList;
-
 public class Celda implements Runnable {
     
     private int fila;
     private int columna;
     private boolean estado; // muerta/viva
-    private ArrayList<Integer> buzon;
+    private Buffer buzon;
     private Tablero tablero;
 
 
 
-    public Celda (int fila, int columna, boolean estado, Tablero tablero, ArrayList<Integer> buzon) {
+    public Celda (int fila, int columna, boolean estado, Tablero tablero) {
         this.fila = fila;
         this.columna = columna;
         this.estado = estado;
         this.tablero = tablero;
-        this.buzon = buzon;
+        this.buzon = new Buffer(fila + 1);
     }
 
 
@@ -113,11 +111,11 @@ public class Celda implements Runnable {
     }
 
 
-    public ArrayList<Integer> getBuzon() {
+    public Buffer getBuzon() {
         return buzon;
     }
 
-    public void setBuzon(ArrayList<Integer> buzon) {
+    public void setBuzon(Buffer buzon) {
         this.buzon = buzon;
     }
 
